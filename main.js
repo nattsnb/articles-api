@@ -11,8 +11,19 @@ fetch('http://localhost:3000/articles/')
             titleElement.innerText = article.title;
             const contentElement = document.createElement('p');
             contentElement.innerText = article.content;
+            const editButton = document.createElement("button")
+            editButton.innerText = "Edit article"
+            editButton.addEventListener('click', function (){
+                const editTitleInput = document.createElement("input")
+                const editContentInput = document.createElement("input")
+                const sendEditedArticleButton = document.createElement("button")
+                titleElement.replaceWith(editTitleInput)
+                contentElement.replaceWith(editContentInput)
+                editButton.replaceWith(sendEditedArticleButton)
+            })
             articleContainer.append(titleElement);
             articleContainer.append(contentElement);
+            articleContainer.append(editButton)
             articlesWrapper.append(articleContainer);
         })
     })

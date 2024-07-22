@@ -14,12 +14,14 @@ fetch('http://localhost:3000/articles/')
             const editButton = document.createElement("button")
             editButton.innerText = "Edit article"
             editButton.addEventListener('click', function (){
+                const editForm = document.createElement("form")
                 const editTitleInput = document.createElement("input")
                 const editContentInput = document.createElement("input")
                 const sendEditedArticleButton = document.createElement("button")
-                titleElement.replaceWith(editTitleInput)
-                contentElement.replaceWith(editContentInput)
-                editButton.replaceWith(sendEditedArticleButton)
+                editForm.append(editTitleInput)
+                editForm.append(editContentInput)
+                editForm.append(sendEditedArticleButton)
+                articleContainer.replaceWith(editForm)
             })
             articleContainer.append(titleElement);
             articleContainer.append(contentElement);

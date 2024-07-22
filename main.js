@@ -1,24 +1,38 @@
 import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+const articlesWrapper = document.querySelector('#articles-wrapper');
+fetch('http://localhost:3000/articles/')
+    .then(response => response.json())
+    .then(data => {
+        data.forEach(function(article) {
+            // separate file
+            const articleContainer = document.createElement('div');
+            const titleElement = document.createElement('h2');
+            titleElement.innerText = article.title;
+            const contentElement = document.createElement('p');
+            contentElement.innerText = article.content;
+            articleContainer.append(titleElement);
+            articleContainer.append(contentElement);
+            articlesWrapper.append(articleContainer);
+        })
+    })
 
-setupCounter(document.querySelector('#counter'))
+const form = document.querySelector('#new-article-form');
+form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const titleInput = document.querySelector('#new-article-tittle');
+    const contentInput = document.querySelector('#new-article-content');
+    const title = titleInput.value;
+    const content = contentInput.value;
+    console.log(title, content);
+});
+
+
+// REPo
+// PR
+// patrzac na blad odpowiednia odpowiedz na stronie
+// przyciski delete edit(artykul na formularz)
+// style
+
+
+

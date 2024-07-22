@@ -7,7 +7,16 @@
     <title>Vite App</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <form id="new-article-form">
+        <input id="new-article-tittle" placeholder="Title"/>
+        <input id="new-article-content" placeholder="Content"/>
+        <button id="send-new-article-button">Send</button>
+      </form>
+
+      <div id="articles-wrapper"></div>
+
+    </div>
     <script type="module" src="/main.js"></script>
   </body>
 </html>

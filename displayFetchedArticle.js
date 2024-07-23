@@ -12,11 +12,11 @@ export function displayFetchedArticle(article, articlesWrapper) {
     titleElement,
     contentElement,
     articleContainer,
-      id
+    id,
   );
   const deleteEditedArticleButton = document.createElement("button");
   deleteEditedArticleButton.innerText = "Delete article";
-  initializeDeleteButton(deleteEditedArticleButton, articleContainer);
+  initializeDeleteButton(deleteEditedArticleButton, articleContainer, id);
   articleContainer.append(titleElement);
   articleContainer.append(contentElement);
   articleContainer.append(editButton);
@@ -29,7 +29,7 @@ function initializeEditButton(
   titleElement,
   contentElement,
   articleContainer,
-  id
+  id,
 ) {
   editButton.addEventListener("click", function () {
     const editForm = document.createElement("form");
@@ -47,8 +47,11 @@ function initializeEditButton(
   });
 }
 
-function initializeDeleteButton(deleteButton, articleContainer) {
+function initializeDeleteButton(deleteButton, articleContainer, id) {
   deleteButton.addEventListener("click", function () {
+    fetch(`http://localhost:3000/articles/${id}`, {
+      method: "DELETE",
+    });
     articleContainer.remove();
   });
 }

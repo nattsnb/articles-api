@@ -17,11 +17,11 @@ form.addEventListener("submit", (event) => {
   const contentInput = document.querySelector("#new-article-content");
   const title = titleInput.value;
   const content = contentInput.value;
-  postArticle(title, content);
+  postNewArticle(title, content);
   console.log(title, content);
 });
 
-function postArticle(title, content) {
+function postNewArticle(title, content) {
   const dataToSend = {
     title: title,
     content: content,

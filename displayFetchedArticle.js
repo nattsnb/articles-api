@@ -1,6 +1,7 @@
 export function displayFetchedArticle(article, articlesWrapper) {
   const articleContainer = document.createElement("div");
   const titleElement = document.createElement("h2");
+  const id = article.id;
   titleElement.innerText = article.title;
   const contentElement = document.createElement("p");
   contentElement.innerText = article.content;
@@ -18,9 +19,34 @@ export function displayFetchedArticle(article, articlesWrapper) {
     editForm.append(editContentInput);
     editForm.append(sendEditedArticleButton);
     articleContainer.replaceWith(editForm);
+    initializeSaveEditButton(editForm, id, editTitleInput, editContentInput);
   });
   articleContainer.append(titleElement);
   articleContainer.append(contentElement);
   articleContainer.append(editButton);
   articlesWrapper.append(articleContainer);
+}
+
+function postEditedArticle(id, title, content) {
+  const dataToSend = {
+    id: id,
+    title: title.value,
+    content: content.value,
+  };
+  console.log(dataToSend);
+  fetch(`http://localhost:3000/articles/${id}`, {
+    method: "PUT",
+    body: JSON.stringify(dataToSend),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+}
+
+function initializeSaveEditButton(editForm, id, title, content) {
+  editForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    postEditedArticle(id, title, content);
+    console.log(title, content);
+  });
 }

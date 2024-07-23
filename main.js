@@ -4,7 +4,7 @@ import { displayFetchedArticle } from "./displayFetchedArticle.js";
 const articlesWrapper = document.querySelector("#articles-wrapper");
 const form = document.querySelector("#new-article-form");
 fetchArticles();
-initializeEventListenerToEditForm();
+initializeEventListenerToNewArticleForm();
 
 function fetchArticles() {
   fetch("http://localhost:3000/articles/")
@@ -15,7 +15,7 @@ function fetchArticles() {
       });
     });
 }
-function initializeEventListenerToEditForm() {
+function initializeEventListenerToNewArticleForm() {
   form.addEventListener("submit", (event) => {
     event.preventDefault();
     const titleInput = document.querySelector("#new-article-tittle");

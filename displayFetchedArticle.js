@@ -43,7 +43,7 @@ function initializeEditButton(
     editForm.append(editContentInput);
     editForm.append(sendEditedArticleButton);
     articleContainer.replaceWith(editForm);
-    initializeSaveEditButton(editForm, id, editTitleInput, editContentInput);
+    initializeSavingEditedArticle(editForm, id, editTitleInput, editContentInput);
   });
 }
 
@@ -72,7 +72,7 @@ function postEditedArticle(id, title, content) {
   });
 }
 
-function initializeSaveEditButton(editForm, id, title, content) {
+function initializeSavingEditedArticle(editForm, id, title, content) {
   editForm.addEventListener("submit", (event) => {
     event.preventDefault();
     postEditedArticle(id, title, content);

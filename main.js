@@ -1,12 +1,12 @@
 import "./style.css";
-import {displayFetchedArticle} from "./displayFetchedArticle.js";
+import { displayFetchedArticle } from "./displayFetchedArticle.js";
 
 const articlesWrapper = document.querySelector("#articles-wrapper");
 fetch("http://localhost:3000/articles/")
   .then((response) => response.json())
   .then((data) => {
     data.forEach(function (article) {
-      displayFetchedArticle(article, articlesWrapper)
+      displayFetchedArticle(article, articlesWrapper);
     });
   });
 
@@ -20,8 +20,6 @@ form.addEventListener("submit", (event) => {
   console.log(title, content);
 });
 
-// REPo
-// PR
 // patrzac na blad odpowiednia odpowiedz na stronie
 // przyciski delete edit(artykul na formularz)
 // style

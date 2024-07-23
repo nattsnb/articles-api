@@ -17,8 +17,23 @@ form.addEventListener("submit", (event) => {
   const contentInput = document.querySelector("#new-article-content");
   const title = titleInput.value;
   const content = contentInput.value;
+  postArticle(title, content);
   console.log(title, content);
 });
+
+function postArticle(title, content) {
+  const dataToSend = {
+    title: title,
+    content: content,
+  };
+  fetch("http://localhost:3000/articles/", {
+    method: "POST",
+    body: JSON.stringify(dataToSend),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+}
 
 // patrzac na blad odpowiednia odpowiedz na stronie
 // przyciski delete edit(artykul na formularz)

@@ -7,6 +7,28 @@ export function displayFetchedArticle(article, articlesWrapper) {
   contentElement.innerText = article.content;
   const editButton = document.createElement("button");
   editButton.innerText = "Edit article";
+  initializeEditButton(
+    editButton,
+    titleElement,
+    contentElement,
+    articleContainer,
+  );
+  const deleteEditedArticleButton = document.createElement("button");
+  deleteEditedArticleButton.innerText = "Delete article";
+  initializeDeleteButton(deleteEditedArticleButton, articleContainer);
+  articleContainer.append(titleElement);
+  articleContainer.append(contentElement);
+  articleContainer.append(editButton);
+  articleContainer.append(deleteEditedArticleButton);
+  articlesWrapper.append(articleContainer);
+}
+
+function initializeEditButton(
+  editButton,
+  titleElement,
+  contentElement,
+  articleContainer,
+) {
   editButton.addEventListener("click", function () {
     const editForm = document.createElement("form");
     const editTitleInput = document.createElement("input");
@@ -21,10 +43,12 @@ export function displayFetchedArticle(article, articlesWrapper) {
     articleContainer.replaceWith(editForm);
     initializeSaveEditButton(editForm, id, editTitleInput, editContentInput);
   });
-  articleContainer.append(titleElement);
-  articleContainer.append(contentElement);
-  articleContainer.append(editButton);
-  articlesWrapper.append(articleContainer);
+}
+
+function initializeDeleteButton(deleteButton, articleContainer) {
+  deleteButton.addEventListener("click", function () {
+    articleContainer.remove();
+  });
 }
 
 function postEditedArticle(id, title, content) {

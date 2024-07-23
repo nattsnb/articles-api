@@ -12,6 +12,7 @@ export function displayFetchedArticle(article, articlesWrapper) {
     titleElement,
     contentElement,
     articleContainer,
+      id
   );
   const deleteEditedArticleButton = document.createElement("button");
   deleteEditedArticleButton.innerText = "Delete article";
@@ -28,6 +29,7 @@ function initializeEditButton(
   titleElement,
   contentElement,
   articleContainer,
+  id
 ) {
   editButton.addEventListener("click", function () {
     const editForm = document.createElement("form");

@@ -20,17 +20,15 @@ function initializeEventListenerToNewArticleForm() {
     event.preventDefault();
     const titleInput = document.querySelector("#new-article-tittle");
     const contentInput = document.querySelector("#new-article-content");
-    const title = titleInput.value;
-    const content = contentInput.value;
-    postNewArticle(title, content);
-    console.log(title, content);
+    const errorMessage = document.querySelector("#error-message");
+    postNewArticle(titleInput, contentInput, errorMessage);
   });
 }
 
-function postNewArticle(title, content) {
+function postNewArticle(titleInput, contentInput, errorMessage) {
   const dataToSend = {
-    title: title,
-    content: content,
+    title: titleInput.value,
+    content: contentInput.value,
   };
   fetch("http://localhost:3000/articles/", {
     method: "POST",
@@ -40,15 +38,24 @@ function postNewArticle(title, content) {
     },
   }).then((response) => {
     if (response.status === 400) {
-      console.log("no data");
+      errorMessage.innerText = "Error, provide data."
     } else if (response.status === 409) {
-      console.log("article already exists");
+      errorMessage.innerText = "Error, article already exists."
     } else if (response.status === 404) {
-      console.log("server doesnt exist");
+      errorMessage.innerText = "Error, server doesn't exist."
     } else if (response.status === 201) {
-      console.log("article published");
+      errorMessage.innerText = "Article published."
+      clearArticlesWrapper()
+      fetchArticles()
+      titleInput.value = ""
+      contentInput.value = ""
     }
   });
+}
+
+function clearArticlesWrapper() {
+  const articlesToClear = document.querySelectorAll("article-container")
+  console.log(articlesToClear)
 }
 
 // patrzac na blad odpowiednia odpowiedz na stronie

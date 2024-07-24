@@ -1,5 +1,6 @@
 export function displayFetchedArticle(article, articlesWrapper) {
   const articleContainer = document.createElement("div");
+  articleContainer.classList.add("article-container")
   const titleElement = document.createElement("h2");
   const id = article.id;
   titleElement.innerText = article.title;

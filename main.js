@@ -38,6 +38,16 @@ function postNewArticle(title, content) {
     headers: {
       "Content-Type": "application/json",
     },
+  }).then((response) => {
+    if (response.status === 400) {
+      console.log("no data");
+    } else if (response.status === 409) {
+      console.log("article already exists");
+    } else if (response.status === 404) {
+      console.log("server doesnt exist");
+    } else if (response.status === 201) {
+      console.log("article published");
+    }
   });
 }
 

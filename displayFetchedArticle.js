@@ -43,7 +43,12 @@ function initializeEditButton(
     editForm.append(editContentInput);
     editForm.append(sendEditedArticleButton);
     articleContainer.replaceWith(editForm);
-    initializeSavingEditedArticle(editForm, id, editTitleInput, editContentInput);
+    initializeSavingEditedArticle(
+      editForm,
+      id,
+      editTitleInput,
+      editContentInput,
+    );
   });
 }
 

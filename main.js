@@ -38,26 +38,26 @@ function postNewArticle(titleInput, contentInput, errorMessage) {
     },
   }).then((response) => {
     if (response.status === 400) {
-      errorMessage.innerText = "Error, provide data."
+      errorMessage.innerText = "Error, provide data.";
     } else if (response.status === 409) {
-      errorMessage.innerText = "Error, article already exists."
+      errorMessage.innerText = "Error, article already exists.";
     } else if (response.status === 404) {
-      errorMessage.innerText = "Error, server doesn't exist."
+      errorMessage.innerText = "Error, server doesn't exist.";
     } else if (response.status === 201) {
-      errorMessage.innerText = "Article published."
-      clearArticlesWrapper()
-      fetchArticles()
-      titleInput.value = ""
-      contentInput.value = ""
+      errorMessage.innerText = "Article published.";
+      clearArticlesWrapper();
+      fetchArticles();
+      titleInput.value = "";
+      contentInput.value = "";
     }
   });
 }
 
 function clearArticlesWrapper() {
-  const articlesToClear = document.querySelectorAll(".article-container")
-  articlesToClear.forEach(function (article){
-    article.remove()
-  })
+  const articlesToClear = document.querySelectorAll(".article-container");
+  articlesToClear.forEach(function (article) {
+    article.remove();
+  });
 }
 
 // patrzac na blad odpowiednia odpowiedz na stronie

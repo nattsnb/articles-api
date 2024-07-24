@@ -54,8 +54,10 @@ function postNewArticle(titleInput, contentInput, errorMessage) {
 }
 
 function clearArticlesWrapper() {
-  const articlesToClear = document.querySelectorAll("article-container")
-  console.log(articlesToClear)
+  const articlesToClear = document.querySelectorAll(".article-container")
+  articlesToClear.forEach(function (article){
+    article.remove()
+  })
 }
 
 // patrzac na blad odpowiednia odpowiedz na stronie
